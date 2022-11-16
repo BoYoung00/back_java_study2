@@ -16,6 +16,11 @@
     <input type="submit" value="회원가입">
 </form>
 
+<form action="deleteAction.jsp" method="post">
+    <input type="text" name="deleteUserId">
+    <input type="submit" value="삭제">
+</form>
+
 <div>
     <%
         UserDao userDAO = new UserDao();

@@ -67,5 +67,43 @@ public class UserDao {
         return list;
     }
 
+    public int deleteuser(String userid) {
+        int deleteCount = 0;
+
+        Connection conn = null;
+
+        PreparedStatement ps = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            String sql = "delete from usertable where userid=?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, userid);
+            deleteCount = ps.executeUpdate(); //int값 반환
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        finally { //무조건 한 번 실행 시키기
+            if (ps != null) {
+                try {
+                    ps.close();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return deleteCount;
+    }
+
 }
 
