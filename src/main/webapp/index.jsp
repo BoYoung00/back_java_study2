@@ -16,10 +16,22 @@
     <input type="submit" value="회원가입">
 </form>
 
+<br>
+
 <form action="deleteAction.jsp" method="post">
     <input type="text" name="deleteUserId">
     <input type="submit" value="삭제">
 </form>
+
+<br>
+
+<form action="updateAction.jsp" method="post">
+    <input type="text" name="UserId">
+    <input type="text" name="updateUserPw">
+    <input type="submit" value="수정">
+</form>
+
+<br>
 
 <div>
     <%

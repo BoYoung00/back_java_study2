@@ -105,5 +105,44 @@ public class UserDao {
         return deleteCount;
     }
 
+    public int update(UserDto dto) {
+        int updateCount=0;
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+            String sql="update usertable set userpassword=? where userid=?";
+            ps=conn.prepareStatement(sql);
+
+            ps.setString(1, dto.getUserPassword());
+            ps.setString(2, dto.getUserID());
+
+            updateCount=ps.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        finally { //무조건 한 번 실행 시키기
+            if (ps != null) {
+                try {
+                    ps.close();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return updateCount;
+    }
+
 }
 
