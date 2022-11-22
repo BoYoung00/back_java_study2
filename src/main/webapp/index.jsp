@@ -31,6 +31,12 @@
     <input type="submit" value="수정">
 </form>
 
+<form action="loginAction.jsp" method="post">
+    <input type="text" name="userID">
+    <input type="text" name="userPassword">
+    <input type="submit" value="로그인">
+</form>
+
 <br>
 
 <div>
